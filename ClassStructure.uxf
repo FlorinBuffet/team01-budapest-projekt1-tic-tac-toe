@@ -1,20 +1,42 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>584</x><y>210</y><w>210</w><h>100</h></coordinates><panel_attributes>_object: Board_
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>570</x><y>0</y><w>290</w><h>180</h></coordinates><panel_attributes>_object: Board_
 --
 int[][] board (0="", 1="X", 2="O")
 --
+isFieldPlayable(int row, int col)
+- checks if the field coordinates exist
+- checks if the field is already used
+--
 setField(int row, int col, int status)
-getField(int row, int col)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>354</x><y>210</y><w>210</w><h>100</h></coordinates><panel_attributes>_object: Game_
+- sets status of a field
+- does not verify legality
+--
+getField(int row, int col)
+- returns value of a field</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>0</y><w>240</w><h>150</h></coordinates><panel_attributes>_object: Game_
 --
 int roundsPlayed;
 --
 startNewGame()
+- deletes current fields
+--
 checkWinner(Board board)
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>124</x><y>210</y><w>210</w><h>130</h></coordinates><panel_attributes>_object: UserInterface_
+- checks if one of the players has won
+- returns the winner or draw</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>310</w><h>270</h></coordinates><panel_attributes>_object: UserInterface_
 --
 String language
 ArrayList textOutputs
 --
 changeLanguage()
+- sets value language to selected language
+--
 makeMove()
+- asks for move / language change
+- calls isFieldPlayable to check if the move is allowed
+- calls setField to save the move
+- outputs the board and messages
+- calls checkWinner
+--
 printBoard()
-displayResult()</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+- prints board as ascii art
+--
+displayResult()
+- displays and congratulates winner or draw</panel_attributes><additional_attributes></additional_attributes></element></diagram>
