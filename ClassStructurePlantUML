@@ -24,7 +24,7 @@ class UserInterface {
   displayResult()
 }
 
-Game --> Board
+Board --> Game
 UserInterface --> Game
 
 @enduml
