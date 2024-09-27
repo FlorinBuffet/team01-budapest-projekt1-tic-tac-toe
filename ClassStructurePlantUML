@@ -1,0 +1,30 @@
+@startuml
+
+class Board {
+  int[][] board (0="", 1="X", 2="O")
+  --
+  setField(int row, int col, int status)
+  getField(int row, int col)
+}
+
+class Game {
+  int roundsPlayed
+  --
+  startNewGame()
+  checkWinner(Board board)
+}
+
+class UserInterface {
+  String language
+  ArrayList textOutputs
+  --
+  changeLanguage()
+  makeMove()
+  printBoard()
+  displayResult()
+}
+
+Game --> Board
+UserInterface --> Game
+
+@enduml

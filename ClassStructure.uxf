@@ -1,5 +1,6 @@
 <diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>584</x><y>210</y><w>210</w><h>100</h></coordinates><panel_attributes>_object: Board_
 --
+@startuml
 int[][] board (0="", 1="X", 2="O")
 --
 setField(int row, int col, int status)
@@ -18,3 +19,4 @@ changeLanguage()
 makeMove()
 printBoard()
 displayResult()</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+@enduml
