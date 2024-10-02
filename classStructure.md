@@ -13,7 +13,7 @@ classDiagram
         -int[][] board
         +setField(int row, int col, int status)
         +getField(int row, int col) int
-        +checkField(int row, int col) int
+        +checkField(int row, int col) boolean
     }
     class Game{
         -int roundsPlayed
