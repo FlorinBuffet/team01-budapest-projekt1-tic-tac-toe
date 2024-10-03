@@ -27,4 +27,13 @@ public class Game {
         // TODO: Implement this method
         return false; // Placeholder return value
     }
+
+    /**
+     * Returns roundsPlayed.
+     *
+     * @return returns roundsPlayed
+     */
+    public int getRoundsPlayed() {
+        //TODO: return roundsPlayed;
+    }
 }
