@@ -12,6 +12,13 @@ public class Board {
     private int[][] board;
 
     /**
+     * Constructor of Board, should create board as 3x3.
+     */
+    public Board(){
+
+    }
+
+    /**
      * Sets the status of a specific field on the board.
      *
      * @param row the row index of the field
