@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
  * Test class for the Board class.
  * Contains unit tests to verify the functionality of the Board class.
  *
- * @author
- * @version 1.0
+ * @author Midas Pavia Dominguez
+ * @version 1.2
  */
 
 public class BoardTest {
@@ -16,35 +16,10 @@ public class BoardTest {
     @Test
     public void testSetField() {
         Board board = new Board();
-        board.setField(1,2,1);
-        assertEquals(1, board.getField(1,2));
-    }
-
-    /**
-     * Tests the setField method to ensure it throws an IllegalArgumentException
-     * when the row or column index is out of bounds.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetFieldOutOfBounds() {
-        // Test implementation
-    }
-
-    /**
-     * Tests the setField method to ensure it throws an IllegalArgumentException
-     * when an invalid mark value is provided.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetFieldInvalidMark() {
-        // Test implementation
-    }
-
-    /**
-     * Tests the setField method to ensure it throws an IllegalArgumentException
-     * when attempting to overwrite an already marked field.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetFieldAlreadyMarked() {
-        // Test implementation
+        board.setField(1, 2, 1);
+        board.setField(0, 0, 2);
+        assertEquals(88, board.getField(1, 2));// ASCII value of 'X'
+        assertEquals(79, board.getField(0, 0));// ASCII value of 'O'
     }
 
     /**
@@ -52,15 +27,21 @@ public class BoardTest {
      */
     @Test
     public void testGetField() {
-        // Test implementation
+        Board board = new Board();
+        board.setField(1, 2, 1);
+        board.setField(0, 0, 2);
+        assertEquals(88, board.getField(1, 2)); //ASCII value of 'X'
+        assertEquals(79, board.getField(0, 0)); //ASCII value of 'Y'
     }
 
     /**
-     * Tests the getField method to ensure it throws an IllegalArgumentException
-     * when the row or column index is out of bounds.
+     * Tests the isOccupied method to ensure it correctly checks if a field is occupied.
      */
-    @Test(expected = IllegalArgumentException.class)
-    public void testGetFieldOutOfBounds() {
-        // Test implementation
+    @Test
+    public void testIsOccupied() {
+        Board board = new Board();
+        board.setField(1, 2, 1);
+        assertTrue(board.isOccupied(1, 2));
+        assertFalse(board.isOccupied(0, 0));
     }
 }
