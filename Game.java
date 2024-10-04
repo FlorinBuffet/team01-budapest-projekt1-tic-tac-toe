@@ -35,5 +35,6 @@ public class Game {
      */
     public int getRoundsPlayed() {
         //TODO: return roundsPlayed;
+        return 0;
     }
 }
