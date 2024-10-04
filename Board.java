@@ -2,7 +2,7 @@
  * Represents the game board for Tic Tac Toe.
  *
  * @author Chiara Baer
- * @version 1.0
+ * @version 1.1
  */
 public class Board {
     /**
@@ -10,10 +10,6 @@ public class Board {
      * 0 = ' ', 1 = 'X', 2 = 'O'
      */
     private int[][] board;
-
-
-
-
 
     /**
      * Constructs a new Board instance, initializing a 3x3 Tic Tac Toe board.
@@ -36,26 +32,35 @@ public class Board {
      * @param row the row index of the field
      * @param col the column index of the field
      * @param mark the symbol to set (0 = ' ', 1 = 'X', 2 = 'O')
-     * @throws IllegalArgumentException if the row or column index is out of bounds,
-     * if the mark is not 1 or 2, or if the field is already marked and an overwrite is attempted.
+     * Error messages are printed if the mark is not 1 or 2, or if the field is already marked and an overwrite is attempted.
+     * Else it sets the board field to X if 1 or to O if else
      */
     public void setField(int row, int col, int mark) {
         if(row<0 || row>= board.length || col<0 || col>= board[0].length) {
             System.out.println("Row or column index out of bounds");
+            return;
         }
         if(mark !=1 && mark !=2) {
-            throw new IllegalArgumentException("Invalid mark value. Only use 1 for X or 2 for O.");
+            System.out.println("Invalid mark value. Only use 1 for X or 2 for O.");
+            return;
         }
-
         if(isOccupied(row,col)) {
             System.out.println("Field is already marked. It's not allowed to overwrite.");
+            return;
         }
+        board[row][col] = mark == 1 ? 'X' : 'O';
 
     }
-
+    /**
+     * Checks if a specific field on the board is occupied.
+     *
+     * @param row the row index of the field
+     * @param col the column index of the field
+     * @return true if the field is occupied, false otherwise
+     */
     public boolean isOccupied (int row, int col) {
         if(board[row][col] !=0) {
-           return true;
+            return true;
         }
         return false;
     }
@@ -66,7 +71,7 @@ public class Board {
      * @param row the row index of the field
      * @param col the column index of the field
      * @return the mark of the field (0 = ' ', 1 = 'X', 2 = 'O')
-     * @throws IllegalArgumentException if the row or column index is out of bounds
+     * Error message is printed if row or column is out of bounds.
      */
     public int getField(int row, int col) {
         if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) {
