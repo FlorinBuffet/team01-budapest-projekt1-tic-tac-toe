@@ -11,6 +11,10 @@ public class Board {
      */
     private int[][] board;
 
+
+
+
+
     /**
      * Constructs a new Board instance, initializing a 3x3 Tic Tac Toe board.
      * Each cell of the board is set to 0, indicating that it is empty.
@@ -36,16 +40,24 @@ public class Board {
      * if the mark is not 1 or 2, or if the field is already marked and an overwrite is attempted.
      */
     public void setField(int row, int col, int mark) {
-        if(row<0 || row>= board.length || col<0 || col>= board.length[0]) {
-            throw new IllegalArrugmentException("Row or column index out of bounds");
+        if(row<0 || row>= board.length || col<0 || col>= board[0].length) {
+            System.out.println("Row or column index out of bounds");
         }
         if(mark !=1 && mark !=2) {
-            throw new IllegalArgumentException("Invalid mark value. Only use 1 for X or 2 for O.")
+            throw new IllegalArgumentException("Invalid mark value. Only use 1 for X or 2 for O.");
         }
 
-        if(board[row][col] != 0) {
-            throw new IlegalArgumentExcpetion("Field is already marked. It's not allowed to overwrite.")
+        if(isOccupied(row,col)) {
+            System.out.println("Field is already marked. It's not allowed to overwrite.");
         }
+
+    }
+
+    public boolean isOccupied (int row, int col) {
+        if(board[row][col] !=0) {
+           return true;
+        }
+        return false;
     }
 
     /**
@@ -58,7 +70,7 @@ public class Board {
      */
     public int getField(int row, int col) {
         if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) {
-            throw new IllegalArgumentException("Row or column index out of bounds");
+            System.out.println("Row or column index out of bounds");
         }
         return board[row][col];
     }
