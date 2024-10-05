@@ -44,4 +44,12 @@ public class UserInterface {
     public void displayResult() {
         // TODO: Implement this method
     }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 }
