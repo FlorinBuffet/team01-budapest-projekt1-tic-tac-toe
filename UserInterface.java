@@ -20,7 +20,7 @@ public class UserInterface {
     /**
      * Changes the language of the user interface.
      */
-    public void changeLanguage() {
+    public void changeLanguage(String language) {
         // TODO: Implement this method
     }
 
