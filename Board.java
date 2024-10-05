@@ -6,10 +6,11 @@
  */
 public class Board {
     /**
-     * The game board represented as a 2D array.
-     * 0 = ' ', 1 = 'X', 2 = 'O'
+     * The game board represented as a 2D char array.
+     * ' ' = empty, 'X' = player X, 'O' = player O
      */
     private int[][] board;
+
 
     /**
      * Constructs a new Board instance, initializing a 3x3 Tic Tac Toe board.
@@ -32,8 +33,8 @@ public class Board {
      * @param row the row index of the field
      * @param col the column index of the field
      * @param mark the symbol to set (0 = ' ', 1 = 'X', 2 = 'O')
-     * Error messages are printed if the mark is not 1 or 2, or if the field is already marked and an overwrite is attempted.
-     * Else it sets the board field to X if 1 or to O if else
+     * Error messages are printed if the mark is not 'X' or 'O', or if the field is already marked and an overwrite is attempted.
+     * Else it sets the board field to X or O if else
      */
     public void setField(int row, int col, int mark) {
         if(row<0 || row>= board.length || col<0 || col>= board[0].length) {
@@ -48,7 +49,7 @@ public class Board {
             System.out.println("Field is already marked. It's not allowed to overwrite.");
             return;
         }
-        board[row][col] = mark == 1 ? 'X' : 'O';
+        board[row][col] = mark;
 
     }
     /**
