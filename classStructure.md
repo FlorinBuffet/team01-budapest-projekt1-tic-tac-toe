@@ -17,8 +17,12 @@ classDiagram
     }
     class Game{
         -int roundsPlayed
+        -Board board
         +startNewGame()
-        +checkWinner(Board board)
+        +checkWinner()
+        +increaseRoundsPlayed()
+        +getRoundsPlayed()
+        -isWinningLine()
     }
     class UserInterface{
         -String language
