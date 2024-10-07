@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
  * Contains unit tests to verify the functionality of the Board class.
  *
  * @author Midas Pavia Dominguez
- * @version 1.3
+ * @version 1.4
  */
 
 public class BoardTest {
