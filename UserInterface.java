@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Represents the user interface and user interaction for Tic Tac Toe.
  *
  * @author Florin Buffet
- * @version 1.1
+ * @version 1.2
  */
 public class UserInterface {
     /**
@@ -64,14 +64,21 @@ public class UserInterface {
             System.out.println(textOutputs.get(selectedLanguage).get("moveO"));
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
-        if (textOutputs.containsKey(input))
-            changeLanguage(input, scan);
-        else{
-            if (input.length()>=3){
-                
-            }
-        }
+        do {
+            if (textOutputs.containsKey(input))
+                changeLanguage(input, scan);
+        } while (!processMakeMove(input));
         scan.close();
+    }
+
+    /**
+     * Process Input of MakeMove and return true if done, else return false.
+     */
+    public boolean processMakeMove(String input) {
+        if (input.length()>=3){
+
+        }
+        return false;
     }
 
     /**
