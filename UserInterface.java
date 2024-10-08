@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Represents the user interface and user interaction for Tic Tac Toe.
  *
  * @author Florin Buffet
- * @version 1.0
+ * @version 1.1
  */
 public class UserInterface {
     /**
@@ -19,10 +19,10 @@ public class UserInterface {
      */
     private Map<String, Map<String, String>> textOutputs;
 
-    public void newGame(){
+    public void newGame() {
         Scanner scan = new Scanner(System.in);
         createLanguageMap();
-        selectedLanguage="de";
+        selectedLanguage = "de";
         System.out.println(textOutputs.get(selectedLanguage).get("initialLanguageSelection"));
         String input = scan.nextLine();
         if (!input.equals(""))
@@ -30,8 +30,8 @@ public class UserInterface {
         System.out.println(textOutputs.get(selectedLanguage).get("welcomeToTheGame"));
         Board board = new Board();
         Game game = new Game(board);
-        while (game.getRoundsPlayed()<9){
-
+        while (game.getRoundsPlayed() < 9) {
+            makeMove(board, game);
         }
     }
 
@@ -39,14 +39,15 @@ public class UserInterface {
      * Handles language change requests of the user until succeeded.
      * 
      * @param language inputs the requested language from the input scanner
-     * @param scan inputs the scanner for further questions regarding the selected language
+     * @param scan     inputs the scanner for further questions regarding the
+     *                 selected language
      */
     public void changeLanguage(String language, Scanner scan) {
-        while (!language.equals("")){
-            if (textOutputs.containsKey(language)){
+        while (!language.equals("")) {
+            if (textOutputs.containsKey(language)) {
                 selectedLanguage = language;
                 return;
-            }else{
+            } else {
                 System.out.println(textOutputs.get(selectedLanguage).get("languageNotFound"));
                 language = scan.nextLine();
             }
@@ -56,8 +57,21 @@ public class UserInterface {
     /**
      * Makes a move on the game board.
      */
-    public void makeMove() {
-        // TODO: Implement this method
+    public void makeMove(Board board, Game game) {
+        if (game.getRoundsPlayed() % 2 == 0)
+            System.out.println(textOutputs.get(selectedLanguage).get("moveX"));
+        else
+            System.out.println(textOutputs.get(selectedLanguage).get("moveO"));
+        Scanner scan = new Scanner(System.in);
+        String input = scan.nextLine();
+        if (textOutputs.containsKey(input))
+            changeLanguage(input, scan);
+        else{
+            if (input.length()>=3){
+                
+            }
+        }
+        scan.close();
     }
 
     /**
@@ -130,17 +144,32 @@ public class UserInterface {
     }
 
     /**
-     * This method fills in our "language Database", which would be in a separate file in a live application.
+     * This method fills in our "language Database", which would be in a separate
+     * file in a live application.
      */
-    private void createLanguageMap(){
+    private void createLanguageMap() {
         Map<String, String> de = new HashMap<>();
         Map<String, String> en = new HashMap<>();
-        de.put("initialLanguageSelection", "Sie haben aktuell Deutsch gewählt, falls Sie die Sprache ändern möchten, geben Sie bitte das zweistellige Sprachenkürzel ein, falls Sie Deutsch behalten möchten, drücken Sie Enter.");
-        en.put("initialLanguageSelection", "You have currently selected English, if you want to change the language, please enter the two-digit language code, if you want to keep English, press Enter.");
-        de.put("languageNotFound","Leider wurde diese Sprache nicht gefunden, zur Auswahl stehen:\nde - Deutsch\nen - Englisch\nBitte wählen Sie erneut oder drücken Sie Enter um mit Deutsch fortzufahren.");
-        en.put("languageNotFound","Unfortunately this language was not found, you can choose from:\nde - German\nen - English\nPlease select again or press Enter to continue with English.");
-        de.put("welcomeToTheGame","Willkommen bei Tic Tac Toe, gemäss den Konventionen beginnt immer X. Sie können die Sprache vor jedem Zug ändern, wenn Sie dies wünschen.");
-        en.put("welcomeToTheGame","Welcome to Tic Tac Toe, according to the conventions, X always begins. You can change the language before each move if you wish.");
+        de.put("initialLanguageSelection",
+                "Sie haben aktuell Deutsch gewählt, falls Sie die Sprache ändern möchten, geben Sie bitte das zweistellige Sprachenkürzel ein, falls Sie Deutsch behalten möchten, drücken Sie Enter.");
+        en.put("initialLanguageSelection",
+                "You have currently selected English, if you want to change the language, please enter the two-digit language code, if you want to keep English, press Enter.");
+        de.put("languageNotFound",
+                "Leider wurde diese Sprache nicht gefunden, zur Auswahl stehen:\nde - Deutsch\nen - Englisch\nBitte wählen Sie erneut oder drücken Sie Enter um mit Deutsch fortzufahren.");
+        en.put("languageNotFound",
+                "Unfortunately this language was not found, you can choose from:\nde - German\nen - English\nPlease select again or press Enter to continue with English.");
+        de.put("welcomeToTheGame",
+                "Willkommen bei Tic Tac Toe, gemäss den Konventionen beginnt immer X. Sie können die Sprache vor jedem Zug ändern, wenn Sie dies wünschen.");
+        en.put("welcomeToTheGame",
+                "Welcome to Tic Tac Toe, according to the conventions, X always begins. You can change the language before each move if you wish.");
+        de.put("moveX",
+                "Spieler X ist an der Reihe, bitte geben Sie das gewünschte Feld mit Spalte und Zeile an. Mit einem Sprachkürzel können Sie die Sprache wechseln.");
+        en.put("moveX",
+                "It is player X's turn, please enter the desired field with column and row. You can change the language with a language abbreviation.");
+        de.put("moveO",
+                "Spieler O ist an der Reihe, bitte geben Sie das gewünschte Feld mit Spalte und Zeile an. Mit einem Sprachkürzel können Sie die Sprache wechseln.");
+        en.put("moveO",
+                "It is player O's turn, please enter the desired field with column and row. You can change the language with a language abbreviation.");
 
         textOutputs = new HashMap<String, Map<String, String>>();
         textOutputs.put("de", de);
