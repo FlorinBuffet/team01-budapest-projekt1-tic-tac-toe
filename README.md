@@ -24,11 +24,14 @@
 - **Data**: Manages language settings and user inputs.
 - **Interaction**: Interacts with the `Game` and `Board` classes to make moves, print the board, and display results.
 
+### TicTacToe
+- **Responsibility**: Contains the main method to start the game.
+- **Interaction**: Initializes the `Board`, `Game`, and `UserInterface` classes and starts the game.
+
 ## General Workflow
-1. **Initialization**: The game is initialized by creating instances of `Board`, `Game`, and `UserInterface`.
-2. **Game Start**: The `startNewGame` method in the `Game` class resets the board and rounds played.
-3. **Gameplay**: Players make moves through the `UserInterface`, which updates the board and checks for a winner.
-4. **Game End**: The game checks for a winner or a draw after each move.
+
+The game is started by calling the main Method in the class `TicTacToe`. The is initialized by creating instances of `Board`, `Game` and `UserInterface`.Players make moves through the `UserInterface`, which updates the `Board` and checks for a winner. The language can be changed after each round through the `UserInterface`.
+The `Game` checks for a winner or a draw after each move. As soon as the field is full or a player has won, the game ends and the result is displayed.
 
 ## Detailed Elements
 
@@ -37,13 +40,9 @@
 - **Status Storage**: The status of the game board is stored in a 2D integer array.
 - **Display**: The `UserInterface` class is responsible for displaying the game board.
 
-### Game Logic
-- **Responsible Class**: `Game`
-- **Game Start**: The game is started by calling the `startNewGame` method, which initializes the board and resets the round counter.
-
 ### Players
 - **Representation**: Players are represented by integers (1 for 'X' and 2 for 'O').
-- **Management**: The `Game` class manages the players.
+- **Management**: The `UserInterface` class manages the players.
 - **Current Player**: The current player is determined by the number of rounds played.
 
 ### Control Functions
@@ -56,7 +55,7 @@
 
 ### Language Switching
 - **Responsible Class**: `UserInterface`
-- **Text Storage**: Text messages are stored in a list of maps for different languages.
+- **Text Storage**: Text messages are stored in a map of maps for different languages.
 - **Current Language**: The current language is stored in the `UserInterface` class.
 - **Switching**: The language can be switched independently of the game logic.
 
