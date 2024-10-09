@@ -30,8 +30,8 @@ public class BoardTest {
         Board board = new Board();
         board.setField(1, 2, 1);
         board.setField(0, 0, 2);
-        assertEquals(1, board.getField(1, 2)); //ASCII value of 'X'
-        assertEquals(2, board.getField(0, 0)); //ASCII value of 'Y'
+        assertEquals(1, board.getField(1, 2));
+        assertEquals(2, board.getField(0, 0));
     }
 
     /**

@@ -4,7 +4,7 @@ title: Tic Tac Toe
 ---
 classDiagram
     Game <|-- Board
-    Game <|-- UserInterface
+    UserInterface <|-- Game
     UserInterface <|-- Board
 
     note for Board "0 = ' '\n1 = 'X'\n2 = 'O'"
@@ -13,7 +13,7 @@ classDiagram
         -int[][] board
         +setField(int row, int col, int status)
         +getField(int row, int col) int
-        +checkField(int row, int col) boolean
+        +isOccupied(int row, int col) boolean
     }
     class Game{
         -int roundsPlayed
@@ -25,11 +25,17 @@ classDiagram
         -isWinningLine()
     }
     class UserInterface{
-        -String language
-        -ArrayList[Map[String]] languageOutput
-        +changeLanguage()
-        +makeMove()
-        +printBoard()
+        -String selectedLanguage
+        -Map[String,Map[String,String]] textOutputs
+        +newGame()
+        +changeLanguage(String language, Scanner scan)
+        +makeMove(Board board, Game game)
+        +processMakeMove(String input) boolean
         +displayResult()
+        +printBoard(Board board)
+        -printSpacer()
+        -printFilledLine(char rowName, char field1, char field2, char field3)
+        -convertFieldStatusToChar(int fieldInt) char
+        -createLanguageMap()
     }
 ```
