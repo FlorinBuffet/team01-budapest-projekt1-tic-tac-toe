@@ -2,10 +2,10 @@
 
 ## Contributors
 
-Florin Buffet
-Widmer Leo
-Chiara Baer
-Midas Pavia Dominguez
+- Florin Buffet
+- Widmer Leo
+- Chiara Baer
+- Midas Pavia Dominguez
 
 ## Class Responsibilities
 
@@ -63,5 +63,4 @@ Midas Pavia Dominguez
 ## Class Diagram
 The class diagram below provides a visual representation of the relationships between the classes in this project.
 
-![Class Diagram](ClassDiagramm.png)
 [Mermaid](https://github.zhaw.ch/PM1-IT24aZH-wahl-fame-lieh-dihl-pasu/team01-budapest-projekt1-tic-tac-toe/blob/main/classStructure.md)
