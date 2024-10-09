@@ -13,11 +13,15 @@ public class UserInterface {
      * The current language of the user interface.
      */
     private String selectedLanguage;
+    private Map<String, Map<String, String>> textOutputs;
+
+    public UserInterface(Game game) {
+
+    }
 
     /**
      * The text outputs for the user interface.
      */
-    private Map<String, Map<String, String>> textOutputs;
 
     public void newGame() {
         Scanner scan = new Scanner(System.in);
