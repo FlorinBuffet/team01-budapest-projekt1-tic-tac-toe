@@ -3,30 +3,37 @@
 title: Tic Tac Toe
 ---
 classDiagram
-    Game <|-- Board
-    UserInterface <|-- Game
-    UserInterface <|-- Board
+    TicTacToe ..> UserInterface
+    Game ..> Board
+    UserInterface ..> Game
+    UserInterface ..> Board
 
     note for Board "0 = ' '\n1 = 'X'\n2 = 'O'"
   
+    class TicTacToe{
+        +main(args: String[]) void
+    }
     class Board{
-        -int[][] board
+        -board: int[][]
+        +Board(Game game)
         +setField(int row, int col, int status)
         +getField(int row, int col) int
         +isOccupied(int row, int col) boolean
     }
     class Game{
-        -int roundsPlayed
-        -Board board
+        -roundsPlayed: int
+        -board: Board
+        +Game(Board board)
         +startNewGame()
-        +checkWinner()
+        +checkWinner() boolean
         +increaseRoundsPlayed()
-        +getRoundsPlayed()
-        -isWinningLine()
+        +getRoundsPlayed() int
+        -isWinningLine() boolean
     }
     class UserInterface{
-        -String selectedLanguage
-        -Map[String,Map[String,String]] textOutputs
+        -selectedLanguage: String
+        -textOutputs: Map[String,Map[String,String]]
+        +UserInterface(Game game)
         +newGame()
         +changeLanguage(String language, Scanner scan)
         +makeMove(Board board, Game game)
