@@ -62,4 +62,8 @@ The `Game` checks for a winner or a draw after each move. As soon as the field i
 ## Class Diagram
 The class diagram below provides a visual representation of the relationships between the classes in this project.
 
-[Mermaid](https://github.zhaw.ch/PM1-IT24aZH-wahl-fame-lieh-dihl-pasu/team01-budapest-projekt1-tic-tac-toe/blob/main/classStructure.md)
+[Mermaid](https://github.zhaw.ch/PM1-IT24aZH-wahl-fame-lieh-dihl-pasu/team01-budapest-projekt1-tic-tac-toe/blob/main/doc/classStructure.md)
+
+## Testing
+- [Test Concept](https://github.zhaw.ch/PM1-IT24aZH-wahl-fame-lieh-dihl-pasu/team01-budapest-projekt1-tic-tac-toe/blob/main/doc/testkonzept.md)
+- [Test Protocol](https://github.zhaw.ch/PM1-IT24aZH-wahl-fame-lieh-dihl-pasu/team01-budapest-projekt1-tic-tac-toe/blob/main/doc/Testprotokoll.docx)
