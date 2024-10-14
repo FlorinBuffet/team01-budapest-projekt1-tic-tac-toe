@@ -1,6 +1,6 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  * Test class for the Game class.
@@ -15,7 +15,7 @@ public class GameTest {
      * Sets up the test environment before each test.
      * Initializes the Board and Game objects.
      */
-    @BeforeEach
+    @Before
     public void setup() {
         board = new Board();
         game = new Game(board);
@@ -27,10 +27,10 @@ public class GameTest {
     @Test
     public void testStartGame() {
         game.startNewGame();
-        assertEquals(0, game.getRoundsPlayed(), "Rounds played should be reset to 0");
+        assertEquals(0, game.getRoundsPlayed());
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                assertEquals(0, board.getField(i, j), "All board fields should be reset to 0");
+                assertEquals(0, board.getField(i, j));
             }
         }
     }
@@ -41,7 +41,7 @@ public class GameTest {
     @Test
     public void testIncreaseRoundsPlayed() {
         game.increaseRoundsPlayed();
-        assertEquals(1, game.getRoundsPlayed(), "Rounds played should be incremented by 1");
+        assertEquals(1, game.getRoundsPlayed());
     }
 
     /**
@@ -55,7 +55,7 @@ public class GameTest {
         for (int i = 0; i < 5; i++) {
             game.increaseRoundsPlayed();
         }
-        assertTrue(game.checkWinner(), "Should detect horizontal win");
+        assertTrue(game.checkWinner());
     }
 
     /**
@@ -69,7 +69,7 @@ public class GameTest {
         for (int i = 0; i < 5; i++) {
             game.increaseRoundsPlayed();
         }
-        assertTrue(game.checkWinner(), "Should detect vertical win");
+        assertTrue(game.checkWinner());
     }
 
     /**
@@ -83,7 +83,7 @@ public class GameTest {
         for (int i = 0; i < 5; i++) {
             game.increaseRoundsPlayed();
         }
-        assertTrue(game.checkWinner(), "Should detect a main diagonal win");
+        assertTrue(game.checkWinner());
     }
 
     /**
@@ -97,7 +97,7 @@ public class GameTest {
         for (int i = 0; i < 5; i++) {
             game.increaseRoundsPlayed();
         }
-        assertTrue(game.checkWinner(), "Should detect an anti-diagonal win");
+        assertTrue(game.checkWinner());
     }
 
     /**
@@ -116,7 +116,7 @@ public class GameTest {
         for (int i = 0; i < 5; i++) {
             game.increaseRoundsPlayed();
         }
-        assertFalse(game.checkWinner(), "Should not detect a win with a full board.");
+        assertFalse(game.checkWinner());
     }
 
     /**
@@ -134,7 +134,7 @@ public class GameTest {
         for (int i = 0; i < 9; i++) {
             game.increaseRoundsPlayed();
         }
-        assertFalse(game.checkWinner(), "Should detect a draw with no winning lines");
+        assertFalse(game.checkWinner());
     }
 
     /**
@@ -146,10 +146,10 @@ public class GameTest {
         game.increaseRoundsPlayed();
         game.increaseRoundsPlayed();
         game.startNewGame(); // Resetting the game
-        assertEquals(0, game.getRoundsPlayed(), "Rounds should be reset to 0");
+        assertEquals(0, game.getRoundsPlayed());
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                assertEquals(0, board.getField(i, j), "Board should be reset to empty");
+                assertEquals(0, board.getField(i, j));
             }
         }
     }
