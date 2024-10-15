@@ -14,7 +14,7 @@ public class TicTacToe {
         UserInterface ui = new UserInterface(game,board);
         do {
             ui.newGame();
-        }while(game.getNextGame());
+        }while(ui.getNextGame());
         
     }
 }
