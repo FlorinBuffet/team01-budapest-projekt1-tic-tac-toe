@@ -2,10 +2,11 @@
 
 ## Contributors
 
-- Florin Buffet
-- Widmer Leo
 - Chiara Baer
+- Florin Buffet
 - Midas Pavia Dominguez
+- Leo Widmer
+
 
 ## Class Responsibilities
 
