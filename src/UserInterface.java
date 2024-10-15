@@ -51,12 +51,12 @@ public class UserInterface {
         printBoard(board);
         displayResult();
         System.out.println(textOutputs.get(selectedLanguage).get("displayNextGame"));
-        while(true){
+        while (true) {
             String input = scan.nextLine().toLowerCase();
-            if ("Y".equals(input)||"J".equals(input)){
+            if ("Y".equals(input) || "J".equals(input) || "O".equals(input)) {
                 nextGame = true;
                 break;
-            }else if ("N".equals(input)){
+            } else if ("N".equals(input)) {
                 break;
             }
             System.out.println(textOutputs.get(selectedLanguage).get("invalidInput"));
@@ -97,7 +97,7 @@ public class UserInterface {
             if (textOutputs.containsKey(input)) {
                 changeLanguage(input);
                 System.out.println(textOutputs.get(selectedLanguage).get("languageChanged"));
-            }else if (processMakeMove(input))
+            } else if (processMakeMove(input))
                 break;
             else {
                 System.out.println(textOutputs.get(selectedLanguage).get("invalidInput"));
@@ -132,11 +132,11 @@ public class UserInterface {
      * Displays the result of the game.
      */
     public void displayResult() {
-        if (game.getRoundsPlayed()==9){
+        if (game.getRoundsPlayed() == 9) {
             System.out.println(textOutputs.get(selectedLanguage).get("displayDraw"));
-        }else if (game.getRoundsPlayed() % 2 == 0){
+        } else if (game.getRoundsPlayed() % 2 == 0) {
             System.out.println(textOutputs.get(selectedLanguage).get("displayWinnerO"));
-        }else{
+        } else {
             System.out.println(textOutputs.get(selectedLanguage).get("displayWinnerX"));
         }
     }
@@ -210,57 +210,81 @@ public class UserInterface {
     private void createLanguageMap() {
         Map<String, String> de = new HashMap<>();
         Map<String, String> en = new HashMap<>();
+        Map<String, String> fr = new HashMap<>();
         de.put("initialLanguageSelection",
-                "Sie haben aktuell Deutsch gewählt, falls Sie die Sprache ändern möchten, geben Sie bitte das zweistellige Sprachenkürzel ein, falls Sie Deutsch behalten möchten, drücken Sie Enter.");
+                "Sie haben aktuell Deutsch gewählt, falls Sie die Sprache ändern möchten, geben Sie bitte das zweistellige\nSprachenkürzel ein, falls Sie Deutsch behalten möchten, drücken Sie Enter.");
         en.put("initialLanguageSelection",
-                "You have currently selected English, if you want to change the language, please enter the two-digit language code, if you want to keep English, press Enter.");
+                "You have currently selected English, if you want to change the language, please enter the two-digit\nlanguage code, if you want to keep English, press Enter.");
+        fr.put("initialLanguageSelection",
+                "Vous avez actuellement sélectionné l'anglais, si vous souhaitez changer de langue, veuillez saisir le\ncode de langue à deux chiffres, si vous souhaitez conserver l'anglais, appuyez sur Enter.");
         de.put("languageNotFound",
-                "Leider wurde diese Sprache nicht gefunden, zur Auswahl stehen:\nde - Deutsch\nen - Englisch\nBitte wählen Sie erneut oder drücken Sie Enter um mit Deutsch fortzufahren.");
+                "Leider wurde diese Sprache nicht gefunden, zur Auswahl stehen:\nde - Deutsch\nen - Englisch\nfr - Französisch\nBitte wählen Sie erneut oder drücken Sie Enter um mit Deutsch fortzufahren.");
         en.put("languageNotFound",
-                "Unfortunately this language was not found, you can choose from:\nde - German\nen - English\nPlease select again or press Enter to continue with English.");
+                "Unfortunately this language was not found, you can choose from:\nde - German\nen - English\nfr - French\nPlease select again or press Enter to continue with English.");
+        fr.put("languageNotFound",
+                "Désolé, cette langue n'a pas été trouvée, vous avez le choix entre:\nde - Allemand\nen - Anglais\nfr - Français\nVeuillez sélectionner à nouveau ou appuyer sur Entrée pour continuer avec l'allemand.");
         de.put("welcomeToTheGame",
                 "Willkommen bei Tic Tac Toe, gemäss den Konventionen beginnt immer X. Sie können die Sprache vor jedem Zug ändern, wenn Sie dies wünschen.");
         en.put("welcomeToTheGame",
                 "Welcome to Tic Tac Toe, according to the conventions, X always begins. You can change the language before each move if you wish.");
+        fr.put("welcomeToTheGame",
+                "Bienvenue dans Tic Tac Toe, selon les conventions, commence toujours par X. Vous pouvez changer la langue avant chaque coup si vous le souhaitez.");
         de.put("moveX",
                 "Spieler X ist an der Reihe, bitte geben Sie das gewünschte Feld mit Spalte und Zeile an.\nMit einem Sprachkürzel können Sie die Sprache wechseln.");
         en.put("moveX",
                 "It is player X's turn, please enter the desired field with column and row.\nYou can change the language with a language abbreviation.");
+        fr.put("moveX",
+                "C'est au tour du joueur X, veuillez indiquer le champ souhaité avec la colonne et la ligne.\nUn raccourci de langue vous permet de changer de langue.");
         de.put("moveO",
                 "Spieler O ist an der Reihe, bitte geben Sie das gewünschte Feld mit Spalte und Zeile an.\nMit einem Sprachkürzel können Sie die Sprache wechseln.");
         en.put("moveO",
                 "It is player O's turn, please enter the desired field with column and row.\nYou can change the language with a language abbreviation.");
+        fr.put("moveO",
+                "C'est au tour du joueur O, veuillez indiquer le champ souhaité avec la colonne et la ligne.\nUn raccourci de langue vous permet de changer de langue.");
         de.put("invalidInput",
                 "Leider konnte der Input nicht erkannt werden, bitte geben Sie Ihn erneut ein.");
         en.put("invalidInput",
                 "Unfortunately the input could not be recognized, please enter it again.");
+        fr.put("invalidInput",
+                "Malheureusement, l'entrée n'a pas pu être reconnue, veuillez la saisir à nouveau.");
         de.put("languageChanged",
                 "Die Sprache wurde gewechselt, bitte geben Sie Ihren Zug ein.");
         en.put("languageChanged",
-                "The language has been changed, please enter your train.");
+                "The language has been changed, please enter your move.");
+        fr.put("languageChanged",
+                "La langue a été changée, veuillez saisir votre jeu.");
         de.put("displayDraw",
                 "Leider endet das Spiel unentschieden. Geben Sie sich das nächste Mal mehr Mühe.");
         en.put("displayDraw",
                 "Unfortunately, the game ends in a draw. Try harder next time.");
+        fr.put("displayDraw",
+                "Malheureusement, le match se termine par un match nul. Faites un effort la prochaine fois.");
         de.put("displayWinnerX",
                 "Herzliche Gratulation. Spieler X hat das Spiel gewonnen.");
         en.put("displayWinnerX",
                 "Congratulations. Player X has won the game.");
+        fr.put("displayWinnerX",
+                "Toutes nos félicitations. Le joueur X a gagné le match.");
         de.put("displayWinnerO",
                 "Herzliche Gratulation. Spieler O hat das Spiel gewonnen.");
         en.put("displayWinnerO",
                 "Congratulations. Player O has won the game.");
+        fr.put("displayWinnerO",
+                "Toutes nos félicitations. Le joueur O a gagné la partie.");
         de.put("displayNextGame",
                 "Möchten Sie eine neue Partie starten? J/N");
         en.put("displayNextGame",
                 "Would you like to start a new game? Y/N");
+        fr.put("displayNextGame",
+                "Vous voulez commencer une nouvelle partie ? O/N");
 
         textOutputs = new HashMap<String, Map<String, String>>();
         textOutputs.put("de", de);
         textOutputs.put("en", en);
+        textOutputs.put("fr", fr);
     }
 
-    public boolean getNextGame(){
+    public boolean getNextGame() {
         return nextGame;
     }
 
