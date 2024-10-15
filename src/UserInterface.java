@@ -22,6 +22,7 @@ public class UserInterface {
 
     public UserInterface(Game game, Board board) {
         clearTerminal();
+        //game.startNewGame();
         Scanner scan = new Scanner(System.in);
         createLanguageMap();
         selectedLanguage = "de";
@@ -53,11 +54,11 @@ public class UserInterface {
         System.out.println(textOutputs.get(selectedLanguage).get("displayNextGame"));
         while (true) {
             String input = scan.nextLine().toLowerCase();
-            if ("Y".equals(input) || "J".equals(input) || "O".equals(input)) {
+            if ("y".equals(input) || "j".equals(input) || "o".equals(input)) {
                 nextGame = true;
-                break;
-            } else if ("N".equals(input)) {
-                break;
+                return;
+            } else if ("n".equals(input)) {
+                return;
             }
             System.out.println(textOutputs.get(selectedLanguage).get("invalidInput"));
         }
