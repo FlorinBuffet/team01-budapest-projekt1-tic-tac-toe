@@ -28,7 +28,7 @@ public class UserInterface {
         System.out.println(textOutputs.get(selectedLanguage).get("initialLanguageSelection"));
         String input = scan.nextLine();
         if (!input.equals(""))
-            changeLanguage(input, scan);
+            changeLanguage(input);
         this.game = game;
         this.board = board;
         this.scan = scan;
@@ -70,7 +70,7 @@ public class UserInterface {
      * @param scan     inputs the scanner for further questions regarding the
      *                 selected language
      */
-    public void changeLanguage(String language, Scanner scan) {
+    public void changeLanguage(String language) {
         while (!language.equals("")) {
             if (textOutputs.containsKey(language)) {
                 selectedLanguage = language;
@@ -95,7 +95,7 @@ public class UserInterface {
         String input = scan.nextLine();
         while (true) {
             if (textOutputs.containsKey(input)) {
-                changeLanguage(input, scan);
+                changeLanguage(input);
                 System.out.println(textOutputs.get(selectedLanguage).get("languageChanged"));
             }else if (processMakeMove(input))
                 break;
