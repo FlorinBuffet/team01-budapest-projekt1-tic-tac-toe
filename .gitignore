@@ -25,4 +25,5 @@ replay_pid*
 
 # IDE files
 .vscode/launch.json
+.vscode/settings.json
 *.iml
