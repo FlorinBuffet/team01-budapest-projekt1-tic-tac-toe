@@ -1,12 +1,13 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Arrays;
 
 /**
  * Represents the user interface and user interaction for Tic Tac Toe.
  *
  * @author Florin Buffet
- * @version 1.2
+ * @version 1.3
  */
 public class UserInterface {
     /**
@@ -14,16 +15,13 @@ public class UserInterface {
      */
     private String selectedLanguage;
     private Map<String, Map<String, String>> textOutputs;
+    private Game game;
+    private Board board;
+    private Scanner scan;
+    private boolean nextGame;
 
-    public UserInterface(Game game) {
-
-    }
-
-    /**
-     * The text outputs for the user interface.
-     */
-
-    public void newGame() {
+    public UserInterface(Game game, Board board) {
+        clearTerminal();
         Scanner scan = new Scanner(System.in);
         createLanguageMap();
         selectedLanguage = "de";
@@ -31,11 +29,37 @@ public class UserInterface {
         String input = scan.nextLine();
         if (!input.equals(""))
             changeLanguage(input, scan);
+        this.game = game;
+        this.board = board;
+        this.scan = scan;
+    }
+
+    /**
+     * The text outputs for the user interface.
+     */
+
+    public void newGame() {
+        nextGame = false;
         System.out.println(textOutputs.get(selectedLanguage).get("welcomeToTheGame"));
-        Board board = new Board();
-        Game game = new Game(board);
         while (game.getRoundsPlayed() < 9) {
+            clearTerminal();
             makeMove(board, game);
+            if (game.checkWinner())
+                break;
+        }
+        clearTerminal();
+        printBoard(board);
+        displayResult();
+        System.out.println(textOutputs.get(selectedLanguage).get("displayNextGame"));
+        while(true){
+            String input = scan.nextLine().toLowerCase();
+            if ("Y".equals(input)||"J".equals(input)){
+                nextGame = true;
+                break;
+            }else if ("N".equals(input)){
+                break;
+            }
+            System.out.println(textOutputs.get(selectedLanguage).get("invalidInput"));
         }
     }
 
@@ -52,6 +76,7 @@ public class UserInterface {
                 selectedLanguage = language;
                 return;
             } else {
+                clearTerminal();
                 System.out.println(textOutputs.get(selectedLanguage).get("languageNotFound"));
                 language = scan.nextLine();
             }
@@ -62,34 +87,66 @@ public class UserInterface {
      * Makes a move on the game board.
      */
     public void makeMove(Board board, Game game) {
+        printBoard(board);
         if (game.getRoundsPlayed() % 2 == 0)
             System.out.println(textOutputs.get(selectedLanguage).get("moveX"));
         else
             System.out.println(textOutputs.get(selectedLanguage).get("moveO"));
-        Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
-        do {
-            if (textOutputs.containsKey(input))
+        while (true) {
+            if (textOutputs.containsKey(input)) {
                 changeLanguage(input, scan);
-        } while (!processMakeMove(input));
-        scan.close();
+                System.out.println(textOutputs.get(selectedLanguage).get("languageChanged"));
+            }else if (processMakeMove(input))
+                break;
+            else {
+                System.out.println(textOutputs.get(selectedLanguage).get("invalidInput"));
+            }
+            input = scan.nextLine();
+        }
     }
 
     /**
      * Process Input of MakeMove and return true if done, else return false.
      */
     public boolean processMakeMove(String input) {
-        if (input.length()>=3){
-
+        if (input.length() > 3 || input.length() < 1) {
+            return false;
         }
-        return false;
+        input = input.toLowerCase().replaceAll("\\s", "");
+        char[] charArray = input.toCharArray();
+        Arrays.sort(charArray);
+        if (charArray[0] > '3' || charArray[0] < '1' || charArray[1] > 'c' || charArray[1] < 'a') {
+            return false;
+        }
+        if (board.isOccupied(charArray[0] - '1', charArray[1] - 'a')) {
+            return false;
+        } else {
+            board.setField(charArray[0] - '1', charArray[1] - 'a', (game.getRoundsPlayed() % 2) + 1);
+            game.increaseRoundsPlayed();
+            return true;
+        }
     }
 
     /**
      * Displays the result of the game.
      */
     public void displayResult() {
-        // TODO: Implement this method
+        if (game.getRoundsPlayed()==9){
+            System.out.println(textOutputs.get(selectedLanguage).get("displayDraw"));
+        }else if (game.getRoundsPlayed() % 2 == 0){
+            System.out.println(textOutputs.get(selectedLanguage).get("displayWinnerO"));
+        }else{
+            System.out.println(textOutputs.get(selectedLanguage).get("displayWinnerX"));
+        }
+    }
+
+    /**
+     * Clears the current terminal.
+     */
+    private void clearTerminal() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
     /**
@@ -98,25 +155,16 @@ public class UserInterface {
      * @param board the board that should be printed
      */
     public void printBoard(Board board) {
-        printFilledLine(' ', 'a', 'b', 'c');
+        printFilledLine(0, 'a', 'b', 'c');
         printSpacer();
-        printFilledLine(
-                '1',
-                convertFieldStatusToChar(board.getField(0, 0)),
-                convertFieldStatusToChar(board.getField(0, 1)),
-                convertFieldStatusToChar(board.getField(0, 2)));
-        printSpacer();
-        printFilledLine(
-                '2',
-                convertFieldStatusToChar(board.getField(1, 0)),
-                convertFieldStatusToChar(board.getField(1, 1)),
-                convertFieldStatusToChar(board.getField(1, 3)));
-        printSpacer();
-        printFilledLine(
-                '3',
-                convertFieldStatusToChar(board.getField(2, 0)),
-                convertFieldStatusToChar(board.getField(2, 1)),
-                convertFieldStatusToChar(board.getField(2, 2)));
+        for (int i = 0; i < 3; i++) {
+            printFilledLine(
+                    i + 1,
+                    convertFieldStatusToChar(board.getField(i, 0)),
+                    convertFieldStatusToChar(board.getField(i, 1)),
+                    convertFieldStatusToChar(board.getField(i, 2)));
+            printSpacer();
+        }
     }
 
     /**
@@ -134,7 +182,8 @@ public class UserInterface {
      * @param field2  the content for the second board column as integer
      * @param field3  the content for the third board column as integer
      */
-    private void printFilledLine(char rowName, char field1, char field2, char field3) {
+    private void printFilledLine(int row, char field1, char field2, char field3) {
+        String rowName = row == 0 ? " " : "" + row;
         System.out.println(" " + rowName + " | " + field1 + " | "
                 + field2 + " | " + field3 + " |");
     }
@@ -174,16 +223,45 @@ public class UserInterface {
         en.put("welcomeToTheGame",
                 "Welcome to Tic Tac Toe, according to the conventions, X always begins. You can change the language before each move if you wish.");
         de.put("moveX",
-                "Spieler X ist an der Reihe, bitte geben Sie das gewünschte Feld mit Spalte und Zeile an. Mit einem Sprachkürzel können Sie die Sprache wechseln.");
+                "Spieler X ist an der Reihe, bitte geben Sie das gewünschte Feld mit Spalte und Zeile an.\nMit einem Sprachkürzel können Sie die Sprache wechseln.");
         en.put("moveX",
-                "It is player X's turn, please enter the desired field with column and row. You can change the language with a language abbreviation.");
+                "It is player X's turn, please enter the desired field with column and row.\nYou can change the language with a language abbreviation.");
         de.put("moveO",
-                "Spieler O ist an der Reihe, bitte geben Sie das gewünschte Feld mit Spalte und Zeile an. Mit einem Sprachkürzel können Sie die Sprache wechseln.");
+                "Spieler O ist an der Reihe, bitte geben Sie das gewünschte Feld mit Spalte und Zeile an.\nMit einem Sprachkürzel können Sie die Sprache wechseln.");
         en.put("moveO",
-                "It is player O's turn, please enter the desired field with column and row. You can change the language with a language abbreviation.");
+                "It is player O's turn, please enter the desired field with column and row.\nYou can change the language with a language abbreviation.");
+        de.put("invalidInput",
+                "Leider konnte der Input nicht erkannt werden, bitte geben Sie Ihn erneut ein.");
+        en.put("invalidInput",
+                "Unfortunately the input could not be recognized, please enter it again.");
+        de.put("languageChanged",
+                "Die Sprache wurde gewechselt, bitte geben Sie Ihren Zug ein.");
+        en.put("languageChanged",
+                "The language has been changed, please enter your train.");
+        de.put("displayDraw",
+                "Leider endet das Spiel unentschieden. Geben Sie sich das nächste Mal mehr Mühe.");
+        en.put("displayDraw",
+                "Unfortunately, the game ends in a draw. Try harder next time.");
+        de.put("displayWinnerX",
+                "Herzliche Gratulation. Spieler X hat das Spiel gewonnen.");
+        en.put("displayWinnerX",
+                "Congratulations. Player X has won the game.");
+        de.put("displayWinnerO",
+                "Herzliche Gratulation. Spieler O hat das Spiel gewonnen.");
+        en.put("displayWinnerO",
+                "Congratulations. Player O has won the game.");
+        de.put("displayNextGame",
+                "Möchten Sie eine neue Partie starten? J/N");
+        en.put("displayNextGame",
+                "Would you like to start a new game? Y/N");
 
         textOutputs = new HashMap<String, Map<String, String>>();
         textOutputs.put("de", de);
         textOutputs.put("en", en);
     }
+
+    public boolean getNextGame(){
+        return nextGame;
+    }
+
 }
