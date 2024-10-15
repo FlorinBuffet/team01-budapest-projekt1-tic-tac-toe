@@ -1,6 +1,6 @@
 ```mermaid
 ---
-title: Tic Tac Toe
+title: Tic Tac Toe V1.2
 ---
 classDiagram
     TicTacToe ..> UserInterface
@@ -33,16 +33,18 @@ classDiagram
     class UserInterface{
         -selectedLanguage: String
         -textOutputs: Map[String,Map[String,String]]
-        +UserInterface(Game game)
+        +UserInterface(Game game, Board board)
         +newGame()
-        +changeLanguage(String language, Scanner scan)
+        +changeLanguage(String language)
         +makeMove(Board board, Game game)
         +processMakeMove(String input) boolean
         +displayResult()
+        -clearTerminal()
         +printBoard(Board board)
         -printSpacer()
-        -printFilledLine(char rowName, char field1, char field2, char field3)
+        -printFilledLine(int row, char field1, char field2, char field3)
         -convertFieldStatusToChar(int fieldInt) char
         -createLanguageMap()
+        +getNextGame()
     }
 ```
