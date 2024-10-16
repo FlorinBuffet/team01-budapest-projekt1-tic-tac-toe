@@ -54,11 +54,7 @@ public class Game {
         if(isWinningLine(board.getField(0, 0), board.getField(1, 1), board.getField(2, 2))) {
             return true;
         }
-        if(isWinningLine(board.getField(2, 0), board.getField(1, 1), board.getField(0, 2))) {
-            return true;
-        }
-        
-        return false;    
+        return isWinningLine(board.getField(2, 0), board.getField(1, 1), board.getField(0, 2));
     }
 
     /**
