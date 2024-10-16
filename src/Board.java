@@ -41,11 +41,6 @@ public class Board {
             System.out.println("Row or column index out of bounds");
             return;
         }
-
-        if(isOccupied(row,col)) {
-            System.out.println("Field is already marked. It's not allowed to overwrite.");
-            return;
-        }
         board[row][col] = mark;
 
     }
