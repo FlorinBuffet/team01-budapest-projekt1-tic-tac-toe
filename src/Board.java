@@ -2,7 +2,7 @@
  * Represents the game board for Tic Tac Toe.
  *
  * @author Chiara Baer
- * @version 1.1
+ * @version 1.2
  */
 public class Board {
     /**
