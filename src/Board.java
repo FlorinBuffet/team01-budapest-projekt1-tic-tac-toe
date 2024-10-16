@@ -36,10 +36,12 @@ public class Board {
      * Error messages are printed if the mark is not 'X' or 'O', or if the field is already marked and an overwrite is attempted.
      * Else it sets the board field to X or O if else
      */
-    public void setField(int row, int col, int mark) {
+    public void setField(int row, int col, int mark) throws IllegalArgumentException{
+        if(mark < 0 || mark > 2) {
+            throw new IllegalArgumentException("This field value does not exist");
+        }
         if(row<0 || row>= board.length || col<0 || col>= board[0].length) {
-            System.out.println("Row or column index out of bounds");
-            return;
+            throw new IllegalArgumentException("This field does not exist");
         }
         board[row][col] = mark;
 
