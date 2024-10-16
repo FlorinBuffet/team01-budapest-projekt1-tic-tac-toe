@@ -283,7 +283,7 @@ public class UserInterface {
         en.put("selectionNo", "n");
         fr.put("selectionNo", "n");
 
-        textOutputs = new HashMap<String, Map<String, String>>();
+        textOutputs = new HashMap<>();
         textOutputs.put("de", de);
         textOutputs.put("en", en);
         textOutputs.put("fr", fr);
