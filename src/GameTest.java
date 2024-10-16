@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 /**
  * Test class for the Game class.
  * Contains unit tests to verify the functionality of the Game class.
+ *
+ * @author Chiara Bär
+ * @version 1.1
  */
 public class GameTest {
 
