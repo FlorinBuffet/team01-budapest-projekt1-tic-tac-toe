@@ -22,7 +22,7 @@ public class UserInterface {
 
     public UserInterface(Game game, Board board) {
         clearTerminal();
-        //game.startNewGame();
+        game.startNewGame();
         Scanner scan = new Scanner(System.in);
         createLanguageMap();
         selectedLanguage = "de";
