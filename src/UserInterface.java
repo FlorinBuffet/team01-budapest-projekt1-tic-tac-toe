@@ -53,10 +53,10 @@ public class UserInterface {
         System.out.println(textOutputs.get(selectedLanguage).get("displayNextGame"));
         while (true) {
             String input = scan.nextLine().toLowerCase();
-            if ("y".equals(input) || "j".equals(input) || "o".equals(input)) {
+            if (textOutputs.get(selectedLanguage).get("selectionYes").equals(input)) {
                 nextGame = true;
                 return;
-            } else if ("n".equals(input)) {
+            } else if (textOutputs.get(selectedLanguage).get("selectionNo").equals(input)) {
                 clearTerminal();
                 return;
             }
@@ -276,6 +276,12 @@ public class UserInterface {
                 "Would you like to start a new game? Y/N");
         fr.put("displayNextGame",
                 "Vous voulez commencer une nouvelle partie ? O/N");
+        de.put("selectionYes", "j");
+        en.put("selectionYes", "y");
+        fr.put("selectionYes", "o");
+        de.put("selectionNo", "n");
+        en.put("selectionNo", "n");
+        fr.put("selectionNo", "n");
 
         textOutputs = new HashMap<String, Map<String, String>>();
         textOutputs.put("de", de);
