@@ -56,10 +56,7 @@ public class Board {
         if(row<0 || row>= board.length || col<0 || col>= board[0].length) {
             throw new IllegalArgumentException("This field does not exist");
         }
-        if(board[row][col] !=0) {
-            return true;
-        }
-        return false;
+        return board[row][col] !=0;
     }
 
     /**
