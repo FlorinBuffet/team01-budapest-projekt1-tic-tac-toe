@@ -7,7 +7,6 @@ import java.util.Arrays;
  * Represents the user interface and user interaction for Tic Tac Toe.
  *
  * @author Florin Buffet
- * @version 1.3
  */
 public class UserInterface {
     /**
@@ -23,7 +22,7 @@ public class UserInterface {
     public UserInterface(Game game, Board board) {
         clearTerminal();
         game.startNewGame();
-        Scanner scan = new Scanner(System.in);
+        scan = new Scanner(System.in);
         createLanguageMap();
         selectedLanguage = "de";
         System.out.println(textOutputs.get(selectedLanguage).get("initialLanguageSelection"));
@@ -32,7 +31,6 @@ public class UserInterface {
             changeLanguage(input);
         this.game = game;
         this.board = board;
-        this.scan = scan;
     }
 
     /**
@@ -41,6 +39,7 @@ public class UserInterface {
 
     public void newGame() {
         nextGame = false;
+        game.startNewGame();
         System.out.println(textOutputs.get(selectedLanguage).get("welcomeToTheGame"));
         while (game.getRoundsPlayed() < 9) {
             clearTerminal();
@@ -58,6 +57,7 @@ public class UserInterface {
                 nextGame = true;
                 return;
             } else if ("n".equals(input)) {
+                clearTerminal();
                 return;
             }
             System.out.println(textOutputs.get(selectedLanguage).get("invalidInput"));
@@ -68,10 +68,8 @@ public class UserInterface {
      * Handles language change requests of the user until succeeded.
      * 
      * @param language inputs the requested language from the input scanner
-     * @param scan     inputs the scanner for further questions regarding the
-     *                 selected language
      */
-    public void changeLanguage(String language) {
+    private void changeLanguage(String language) {
         while (!language.equals("")) {
             if (textOutputs.containsKey(language)) {
                 selectedLanguage = language;
@@ -87,7 +85,7 @@ public class UserInterface {
     /**
      * Makes a move on the game board.
      */
-    public void makeMove(Board board, Game game) {
+    private void makeMove(Board board, Game game) {
         printBoard(board);
         if (game.getRoundsPlayed() % 2 == 0)
             System.out.println(textOutputs.get(selectedLanguage).get("moveX"));
@@ -110,7 +108,7 @@ public class UserInterface {
     /**
      * Process Input of MakeMove and return true if done, else return false.
      */
-    public boolean processMakeMove(String input) {
+    private boolean processMakeMove(String input) {
         if (input.length() > 3 || input.length() < 1) {
             return false;
         }
@@ -132,7 +130,7 @@ public class UserInterface {
     /**
      * Displays the result of the game.
      */
-    public void displayResult() {
+    private void displayResult() {
         if (game.getRoundsPlayed() == 9) {
             System.out.println(textOutputs.get(selectedLanguage).get("displayDraw"));
         } else if (game.getRoundsPlayed() % 2 == 0) {
@@ -155,7 +153,7 @@ public class UserInterface {
      * 
      * @param board the board that should be printed
      */
-    public void printBoard(Board board) {
+    private void printBoard(Board board) {
         printFilledLine(0, 'a', 'b', 'c');
         printSpacer();
         for (int i = 0; i < 3; i++) {
