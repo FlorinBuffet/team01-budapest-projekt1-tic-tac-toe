@@ -2,7 +2,6 @@
  * Initialises and starts the Tic Tac Toe game
  *
  * @author Widmer Leo
- * @version 1.1
  */
 public class TicTacToe {
     /**

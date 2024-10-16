@@ -2,7 +2,6 @@
  * Represents the game logic for Tic Tac Toe.
  *
  * @author Widmer Leo
- * @version 1.0
  */
 public class Game {
 
