@@ -53,7 +53,10 @@ public class Board {
      * @param col the column index of the field
      * @return true if the field is occupied, false otherwise
      */
-    public boolean isOccupied (int row, int col) {
+    public boolean isOccupied (int row, int col) throws IllegalArgumentException{
+        if(row<0 || row>= board.length || col<0 || col>= board[0].length) {
+            throw new IllegalArgumentException("This field does not exist");
+        }
         if(board[row][col] !=0) {
             return true;
         }
