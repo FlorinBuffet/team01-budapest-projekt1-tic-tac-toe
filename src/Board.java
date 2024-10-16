@@ -71,9 +71,9 @@ public class Board {
      * @return the mark of the field (0 = ' ', 1 = 'X', 2 = 'O')
      * Error message is printed if row or column is out of bounds.
      */
-    public int getField(int row, int col) {
-        if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) {
-            System.out.println("Row or column index out of bounds");
+    public int getField(int row, int col) throws IllegalArgumentException{
+        if(row<0 || row>= board.length || col<0 || col>= board[0].length) {
+            throw new IllegalArgumentException("This field does not exist");
         }
         return board[row][col];
     }
