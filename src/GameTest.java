@@ -49,6 +49,7 @@ public class GameTest {
      */
     @Test
     public void testCheckWinnerWithHorizontalWin() {
+        assertFalse(game.checkWinner());
         board.setField(0, 0, 1);
         board.setField(0, 1, 1);
         board.setField(0, 2, 1);
