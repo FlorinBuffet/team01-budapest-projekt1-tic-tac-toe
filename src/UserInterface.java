@@ -20,6 +20,11 @@ public class UserInterface {
     private boolean nextGame;
 
     public UserInterface(Game game, Board board) {
+        this.game = game;
+        this.board = board;
+        scan = new Scanner(System.in);
+        selectedLanguage = "de";
+        
         clearTerminal();
         game.startNewGame();
         scan = new Scanner(System.in);
