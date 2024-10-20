@@ -9,9 +9,7 @@ import java.util.Arrays;
  * @author Florin Buffet
  */
 public class UserInterface {
-    /**
-     * The current language of the user interface.
-     */
+
     private String selectedLanguage;
     private Map<String, Map<String, String>> textOutputs;
     private Game game;
@@ -19,6 +17,11 @@ public class UserInterface {
     private Scanner scan;
     private boolean nextGame;
 
+    /**
+     * Constructs a user interface for Tic Tac Toe. Default language is German.
+     * @param game the game logic
+     * @param board the tic tac toe board
+     */
     public UserInterface(Game game, Board board) {
         this.game = game;
         this.board = board;
@@ -27,21 +30,18 @@ public class UserInterface {
         
         clearTerminal();
         game.startNewGame();
-        scan = new Scanner(System.in);
         createLanguageMap();
-        selectedLanguage = "de";
         System.out.println(textOutputs.get(selectedLanguage).get("initialLanguageSelection"));
         String input = scan.nextLine();
         if (!input.equals(""))
             changeLanguage(input);
-        this.game = game;
-        this.board = board;
     }
 
     /**
-     * The text outputs for the user interface.
+     * Starts a new game. Players can make moves until there are no fields left(Round 9). After a win or a draw the corresponding result message is shown.
+     * After the game has finished, the user is asked if they'd like to play antoher round.
+     * 
      */
-
     public void newGame() {
         nextGame = false;
         game.startNewGame();
@@ -70,6 +70,14 @@ public class UserInterface {
     }
 
     /**
+     * Getter for nextGame
+     * @return true if the player wants to play again, false otherwise
+     */
+    public boolean getNextGame() {
+        return nextGame;
+    }
+
+    /**
      * Handles language change requests of the user until succeeded.
      * 
      * @param language inputs the requested language from the input scanner
@@ -89,6 +97,8 @@ public class UserInterface {
 
     /**
      * Makes a move on the game board.
+     * @param board the board that the move should be played on
+     * @param game the current game instance
      */
     private void makeMove(Board board, Game game) {
         printBoard(board);
@@ -112,6 +122,8 @@ public class UserInterface {
 
     /**
      * Process Input of MakeMove and return true if done, else return false.
+     * @param input the user input
+     * @return true if the move was valid, false otherwise
      */
     private boolean processMakeMove(String input) {
         if (input.length() > 3 || input.length() < 1) {
@@ -154,7 +166,7 @@ public class UserInterface {
     }
 
     /**
-     * Prints the current state of the game board.
+     * Prints the current state of the game board to the terminal.
      * 
      * @param board the board that should be printed
      */
@@ -181,7 +193,7 @@ public class UserInterface {
     /**
      * This method prints a filled row of the board with row number and content.
      * 
-     * @param rowName the row number to print at the start of the line
+     * @param row the row number to print at the start of the line
      * @param field1  the content for the first board column as integer
      * @param field2  the content for the second board column as integer
      * @param field3  the content for the third board column as integer
@@ -208,7 +220,7 @@ public class UserInterface {
     }
 
     /**
-     * This method fills in our "language Database", which would be in a separate
+     * This method fills in our "language database", which would be in a separate
      * file in a live application.
      */
     private void createLanguageMap() {
@@ -293,9 +305,4 @@ public class UserInterface {
         textOutputs.put("en", en);
         textOutputs.put("fr", fr);
     }
-
-    public boolean getNextGame() {
-        return nextGame;
-    }
-
 }
