@@ -148,7 +148,7 @@ public class UserInterface {
      * Displays the result of the game.
      */
     private void displayResult() {
-        if (game.getRoundsPlayed() == 9) {
+        if (game.getRoundsPlayed() == 9 && game.checkWinner() == false) {
             System.out.println(textOutputs.get(selectedLanguage).get("displayDraw"));
         } else if (game.getRoundsPlayed() % 2 == 0) {
             System.out.println(textOutputs.get(selectedLanguage).get("displayWinnerO"));
