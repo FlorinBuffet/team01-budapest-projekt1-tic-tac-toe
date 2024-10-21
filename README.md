@@ -7,6 +7,21 @@
 - Midas Pavia Dominguez
 - Leo Widmer
 
+## Instructions
+Below are the instructions to run our game. We assume that you have JDK21 installed and running correctly.
+
+### Option 1: IDE
+1. Clone the repository and open it with the IDE of your choice (we tested VS Code and IntelliJ)
+2. Navigate to the src/ directory
+3. Select the class TicTacToe and press Run
+### Option 2: Terminal
+1. Clone the repository
+2. Navigate to the src/ directory
+3. Run the following commands to compile and execute the program
+     ```bash 
+     javac TicTacToe.java
+     java TicTacToe
+     ```
 
 ## Class Responsibilities
 
