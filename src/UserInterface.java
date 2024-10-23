@@ -265,7 +265,7 @@ public class UserInterface {
         fr.put("moveO",
                 "C'est au tour du joueur O, veuillez indiquer le champ souhaité avec la colonne et la ligne.\nUn raccourci de langue vous permet de changer de langue.");
         de.put("invalidInput",
-                "Leider konnte der Input nicht erkannt werden, bitte geben Sie Ihn erneut ein.");
+                "Leider konnte Ihre Eingabe nicht erkannt werden, bitte geben Sie Ihn erneut ein.");
         en.put("invalidInput",
                 "Unfortunately the input could not be recognized, please enter it again.");
         fr.put("invalidInput",
