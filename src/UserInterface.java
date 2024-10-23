@@ -19,7 +19,8 @@ public class UserInterface {
 
     /**
      * Constructs a user interface for Tic Tac Toe. Default language is German.
-     * @param game the game logic
+     * 
+     * @param game  the game logic
      * @param board the tic tac toe board
      */
     public UserInterface(Game game, Board board) {
@@ -27,7 +28,7 @@ public class UserInterface {
         this.board = board;
         scan = new Scanner(System.in);
         selectedLanguage = "de";
-        
+
         clearTerminal();
         game.startNewGame();
         createLanguageMap();
@@ -38,8 +39,11 @@ public class UserInterface {
     }
 
     /**
-     * Starts a new game. Players can make moves until there are no fields left(Round 9). After a win or a draw the corresponding result message is shown.
-     * After the game has finished, the user is asked if they'd like to play antoher round.
+     * Starts a new game. Players can make moves until there are no fields
+     * left(Round 9). After a win or a draw the corresponding result message is
+     * shown.
+     * After the game has finished, the user is asked if they'd like to play antoher
+     * round.
      * 
      */
     public void newGame() {
@@ -71,6 +75,7 @@ public class UserInterface {
 
     /**
      * Getter for nextGame
+     * 
      * @return true if the player wants to play again, false otherwise
      */
     public boolean getNextGame() {
@@ -97,8 +102,9 @@ public class UserInterface {
 
     /**
      * Makes a move on the game board.
+     * 
      * @param board the board that the move should be played on
-     * @param game the current game instance
+     * @param game  the current game instance
      */
     private void makeMove(Board board, Game game) {
         printBoard(board);
@@ -122,6 +128,7 @@ public class UserInterface {
 
     /**
      * Process Input of MakeMove and return true if done, else return false.
+     * 
      * @param input the user input
      * @return true if the move was valid, false otherwise
      */
@@ -193,10 +200,10 @@ public class UserInterface {
     /**
      * This method prints a filled row of the board with row number and content.
      * 
-     * @param row the row number to print at the start of the line
-     * @param field1  the content for the first board column as integer
-     * @param field2  the content for the second board column as integer
-     * @param field3  the content for the third board column as integer
+     * @param row    the row number to print at the start of the line
+     * @param field1 the content for the first board column as integer
+     * @param field2 the content for the second board column as integer
+     * @param field3 the content for the third board column as integer
      */
     private void printFilledLine(int row, char field1, char field2, char field3) {
         String rowName = row == 0 ? " " : "" + row;

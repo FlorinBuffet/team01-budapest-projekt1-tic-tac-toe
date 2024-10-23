@@ -10,10 +10,10 @@ public class TicTacToe {
     public static void main(String[] args) {
         Board board = new Board();
         Game game = new Game(board);
-        UserInterface ui = new UserInterface(game,board);
+        UserInterface ui = new UserInterface(game, board);
         do {
             ui.newGame();
-        }while(ui.getNextGame());
-        
+        } while (ui.getNextGame());
+
     }
 }
