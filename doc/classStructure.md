@@ -35,16 +35,16 @@ classDiagram
         -textOutputs: Map[String,Map[String,String]]
         +UserInterface(Game game, Board board)
         +newGame()
-        +changeLanguage(String language)
-        +makeMove(Board board, Game game)
-        +processMakeMove(String input) boolean
-        +displayResult()
+        +getNextGame()
+        -changeLanguage(String language)
+        -makeMove(Board board, Game game)
+        -processMakeMove(String input) boolean
+        -displayResult()
         -clearTerminal()
-        +printBoard(Board board)
+        -printBoard(Board board)
         -printSpacer()
         -printFilledLine(int row, char field1, char field2, char field3)
         -convertFieldStatusToChar(int fieldInt) char
         -createLanguageMap()
-        +getNextGame()
     }
 ```
